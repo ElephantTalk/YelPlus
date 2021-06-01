@@ -1,24 +1,3 @@
-# README
+# YelPlus
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+YelPlus is a clone of the website Yelp. Users will be able to browse their local area for businesses and leave reviews.
