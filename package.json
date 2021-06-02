@@ -1,5 +1,5 @@
 {
-  "name": "YelPlus",
+  "name": "yelplus",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.14.3",
@@ -27,6 +27,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development",
     "postinstall": "webpack"
   },
   "repository": {
@@ -39,5 +40,6 @@
   "bugs": {
     "url": "https://github.com/ibrahim-ali00/YelPlus/issues"
   },
-  "homepage": "https://github.com/ibrahim-ali00/YelPlus#readme"
+  "homepage": "https://github.com/ibrahim-ali00/YelPlus#readme",
+  "devDependencies": {}
 }
