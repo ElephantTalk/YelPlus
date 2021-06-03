@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const Root = () => {
-  return <div>Welcome to YelPlus!</div>;
-};
+  return (
+    <div>
+      Welcome to YelPlus
+    </div>
+  )
+}
 
 export default Root;
