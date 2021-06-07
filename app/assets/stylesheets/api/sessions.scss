@@ -1,0 +1,89 @@
+// Place all the styles related to the api/Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.greeting {
+  color: rgb(201, 2, 2);
+  display: block;
+  text-align: center;
+}
+.full-name {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.full-name :first-child {
+  margin-right: 5px;
+}
+
+.session-form-container {
+  height: 1000px;
+}
+
+.session-form-content {
+  padding-bottom: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+.text-input {
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin: 2px 0;
+  padding: 3px;
+}
+
+.session-form {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  margin-right: 50px;
+}
+
+.form-btn {
+  width: 300px;
+  background-color: rgb(201, 2, 2);
+  color: white;
+  height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+}
+
+.form-btn {
+  margin: 5px 0px 5px 0px;
+}
+
+.demo-btn {
+  display: flex;
+  width: 300px;
+  background-color: #0073bb;
+  color: white;
+  height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.hr-line {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin: 10px 0 10px 0;
+  color: #a2a2a2;
+  align-items: center;
+}
+
+hr {
+  width: 130px;
+  border: 0.5px dotted #dddddd;
+}
