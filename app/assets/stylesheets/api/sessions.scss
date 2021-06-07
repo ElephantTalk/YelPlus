@@ -53,6 +53,8 @@
   font-size: 16px;
   font-weight: bold;
   border: none;
+  border-radius: 5px
+
 }
 
 .form-btn {
@@ -62,7 +64,7 @@
 .demo-btn {
   display: flex;
   width: 300px;
-  background-color: #0073bb;
+  background-color: #1877f2;
   color: white;
   height: 40px;
   font-size: 16px;
@@ -71,6 +73,7 @@
   justify-content: center;
   align-items: center;
   border: none;
+  border-radius: 5px
 }
 
 .hr-line {
