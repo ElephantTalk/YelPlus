@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Errors from "./errors";
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -34,16 +35,6 @@ class SessionForm extends React.Component {
     this.props.processForm(user);
   }
 
-  renderErrors() {
-    return (
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>{error}</li>
-        ))}
-      </ul>
-    );
-  }
-
   demoLogin(e) {
     e.preventDefault();
     this.props.demoLogin({
@@ -51,8 +42,11 @@ class SessionForm extends React.Component {
       password: "password",
     });
   }
-
+  componentDidMount() {
+    this.props.resetSessionErrors();
+  }
   render() {
+    const { errors } = this.props;
     const signup = (
       <div>
         <h1 className="greeting">Sign Up for Yelp</h1>
@@ -103,7 +97,6 @@ class SessionForm extends React.Component {
         </form>
       </div>
     );
-
     const login = (
       <div>
         <h1 className="greeting">Log in to Yelp</h1>
@@ -140,13 +133,23 @@ class SessionForm extends React.Component {
 
     const display = this.props.formType === "Sign Up" ? signup : login;
     return (
-      <>
-        <div className="session-form-container">
-          <div className="session-form-content">
-            <div className="session-form">{display}</div>
-          </div>
+      <div className="session-form-container">
+        <div className="topNav">
+          <a href="/">
+            <h1>YelPlus</h1>
+          </a>
         </div>
-      </>
+        <div className="errors-container">
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}.</li>
+            ))}
+          </ul>
+        </div>
+        <div className="session-form-content">
+          <div className="session-form">{display}</div>
+        </div>
+      </div>
     );
   }
 }

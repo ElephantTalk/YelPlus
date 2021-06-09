@@ -53,8 +53,7 @@
   font-size: 16px;
   font-weight: bold;
   border: none;
-  border-radius: 5px
-
+  border-radius: 5px;
 }
 
 .form-btn {
@@ -73,7 +72,7 @@
   justify-content: center;
   align-items: center;
   border: none;
-  border-radius: 5px
+  border-radius: 5px;
 }
 
 .hr-line {
@@ -90,3 +89,11 @@ hr {
   width: 130px;
   border: 0.5px dotted #dddddd;
 }
+
+// .errorsBox {
+//   display: block;
+//   background-color: red;
+//   width: 300px;
+//   height: 300px;
+//   font-size: 16px
+// }

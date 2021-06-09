@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { Route, Redirect, Switch, Link, HashRouter } from "react-router-dom";
-
+import Home from './home/home'
 import SignUpFormContainer from "./session/signup_form_container";
 import LogInFormContainer from "./session/login_form_container";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
@@ -9,9 +9,7 @@ import { AuthRoute, ProtectedRoute } from "../util/route_util";
 const App = () => (
   <div>
     <header>
-      <Link to="/" className="header-link">
-        <h1>YelPlus! App</h1>
-      </Link>
+      <Route exact path="/" component={Home} />
     </header>
     <Switch>
       <AuthRoute exact path="/login" component={LogInFormContainer} />

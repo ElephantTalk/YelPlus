@@ -1,0 +1,9 @@
+.session-nav {
+  display: flex;
+  justify-content: right;
+  float: right
+}
+
+.session-nav :last-child {
+    margin-left: 10px;
+  }
