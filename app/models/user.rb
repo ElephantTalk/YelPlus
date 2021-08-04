@@ -17,10 +17,20 @@ class User < ApplicationRecord
   validates :email, :session_token, presence: true, uniqueness: true
   validates :first_name, :last_name, :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
-
   after_initialize :ensure_session_token
-
   attr_reader :password
+
+  has_many :restaurants,
+           foreign_key: :owner_id,
+           class_name: :Restaurant
+
+  has_many :reviews,
+           through: :review_joins,
+           source: :Restaurant
+
+  has_many :review_joins,
+           foreign_key: :user_id,
+           class_name: :Review
 
   def password=(password)
     @password = password

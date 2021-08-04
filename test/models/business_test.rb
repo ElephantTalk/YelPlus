@@ -22,6 +22,8 @@
 #  longitude     :float
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  owner_id      :string
+#  state         :string
 #
 require 'test_helper'
 
