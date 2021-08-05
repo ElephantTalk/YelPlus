@@ -32,10 +32,6 @@ class Business < ApplicationRecord
              foreign_key: :owner_id,
              class_name: :User
 
-  has_many :tag_joins,
-           foreign_key: :restaurant_id,
-           class_name: :Tag_join
-
   has_many :review_joins,
            foreign_key: :restaurant_id,
            class_name: :Review
@@ -43,10 +39,6 @@ class Business < ApplicationRecord
   has_many :reviews,
            through: :review_joins,
            source: :user
-
-  has_many :tags,
-           through: :tag_joins,
-           source: :tag
 
   has_many_attached :photos
 end
