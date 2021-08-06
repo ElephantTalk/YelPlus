@@ -33,7 +33,7 @@ class Business < ApplicationRecord
              class_name: :User
 
   has_many :review_joins,
-           foreign_key: :restaurant_id,
+           foreign_key: :business_id,
            class_name: :Review
 
   has_many :reviews,

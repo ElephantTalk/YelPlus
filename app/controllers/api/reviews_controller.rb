@@ -1,6 +1,6 @@
 class Api::ReviewsController < ApplicationController
   def index
-    @reviews = Review.where(restaurant_id: params[:restaurant_id])
+    @reviews = Review.where(business_id: params[:business_id])
     render :index
   end
 
@@ -33,9 +33,9 @@ class Api::ReviewsController < ApplicationController
 
   def destroy
     if @review = Review.find(params[:id])
-      restaurant = @review.restaurant_id
+      business = @review.business_id
       @review.delete
-      @reviews = Review.where(restaurant_id: restaurant)
+      @reviews = Review.where(business_id: business)
       render :show
     end
   end
@@ -43,6 +43,6 @@ class Api::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:id, :body, :score, :user_id, :restaurant_id)
+    params.require(:review).permit(:id, :body, :score, :user_id, :business_id)
   end
 end
