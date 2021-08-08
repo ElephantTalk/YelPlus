@@ -13,11 +13,11 @@ demo = User.create!({ first_name: "Demo", last_name: "User", email: "test01@gmai
 business1 = Business.create!({
   name: "Mcdonalds",
   owner_id: demo.id,
-  website: "https://www.mcdonalds.com",
+  url: "https://www.mcdonalds.com",
   address1: "160 Broadway",
   city: "New York",
   state: "NY",
-  zipcode: "10038",
+  zip_code: "10038",
   latitude: 40.7094,
   longitude: -74.0100,
   phone: "(212) 388-0088",
