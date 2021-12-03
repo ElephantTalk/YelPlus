@@ -22,3 +22,29 @@ business1 = Business.create!({
   longitude: -74.0100,
   phone: "(212) 388-0088",
 })
+
+business2 = Business.create!({
+  name: "Mcdonalds",
+  owner_id: demo.id,
+  url: "https://www.mcdonalds.com",
+  address1: "160 Broadway",
+  city: "New York",
+  state: "NY",
+  zip_code: "10038",
+  latitude: 40.7094,
+  longitude: -74.0100,
+  phone: "(212) 388-0088",
+})
+
+business3 = Business.create!({
+  name: "Mcdonalds",
+  owner_id: demo.id,
+  url: "https://www.mcdonalds.com",
+  address1: "160 Broadway",
+  city: "New York",
+  state: "NY",
+  zip_code: "10038",
+  latitude: 40.7094,
+  longitude: -74.0100,
+  phone: "(212) 388-0088",
+})
