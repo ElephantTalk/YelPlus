@@ -1,287 +1,286 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 class Business extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      business: { photos: [], tags: [] },
-    };
+    this.avgStar = "";
+    this.oneStar = (
+      <div>
+        <i id="inv-star" className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+      </div>
+    );
+    this.oneHalfStar = (
+      <div>
+        <i id="inv-star" className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star-half-alt str fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+      </div>
+    );
+    this.twoStar = (
+      <div>
+        <i id="inv-star" className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+      </div>
+    );
+    this.twoHalfStar = (
+      <div>
+        <i id="inv-star" className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star-half-alt str fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+      </div>
+    );
+    this.threeStar = (
+      <div>
+        <i id="inv-star" className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+      </div>
+    );
+    this.threeHalfStar = (
+      <div>
+        <i id="inv-star" className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star-half-alt str fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+      </div>
+    );
+    this.fourStar = (
+      <div>
+        <i id="inv-star" className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="far fa-star str-g fa-xs"></i>
+      </div>
+    );
+    this.fourHalfStar = (
+      <div>
+        <i id="inv-star" className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i id="half-star" className="fas fa-star-half-alt str fa-xs"></i>
+      </div>
+    );
+    this.fiveStar = (
+      <div>
+        <i id="inv-star" className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+        <i className="fas fa-star str fa-xs"></i>
+      </div>
+    );
   }
 
   componentDidMount() {
-    // debugger
-    window.scrollTo(0, 0);
-    this.props
-      .fetchBusiness(this.props.match.params.businessId)
-      .then((business) => {
-        this.setState({ business: business.business });
-      });
-    document.getElementById("business-head")
-      ? (document.getElementById("business-head").style.position = "relative")
-      : 0;
+    this.props.fetchBusiness(this.props.match.params.businessId);
   }
 
   render() {
-    const claimed = this.state.business.id ? (
-      <div className="r-claimed">
-        <i className="fas fa-check-circle "></i>
-        <div className="r-claim-text">Claimed</div>
-      </div>
-    ) : (
-      ""
-    );
+    if (this.props.business === undefined) {
+      return <p>waiting for loading</p>;
+    }
+    let rating = 0;
+    if (
+      this.props.business.reviews === undefined ||
+      this.props.business.reviews.length === 0
+    ) {
+      rating = (5.0).toFixed(1);
+    } else {
+      this.props.business.reviews.forEach((review) => (rating += review.stars));
 
-    const rating = this.state.business.review_avg;
-
-    const stars =
-      rating === 5 ? (
-        <div>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-        </div>
-      ) : rating >= 4.5 ? (
-        <div>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star-half-alt"></i>
-        </div>
-      ) : rating >= 4 ? (
-        <div>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="far fa-star"></i>
-        </div>
-      ) : rating >= 3.5 ? (
-        <div>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star-half-alt"></i>
-          <i className="far fa-star"></i>
-        </div>
-      ) : rating >= 3 ? (
-        <div>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
-        </div>
-      ) : rating >= 2.5 ? (
-        <div>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star-half-alt"></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
-        </div>
-      ) : rating >= 2 ? (
-        <div>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
-        </div>
-      ) : rating >= 1.5 ? (
-        <div>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star-half-alt"></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
-        </div>
-      ) : (
-        <div>
-          <i className="fas fa-star"></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
-        </div>
-      );
-
-    // const pic1 = this.state.business.photoURL[0]
-    // const pic2 = this.state.business.photoURL[1]
-    // const pic3 = this.state.business.photoURL[2]
-    // const pic4 = this.state.business.photoURL[3]
-
-    const length = this.state.business.tags.length - 1;
-    const invisible = length === 0 ? "invisible" : "";
-    // debugger
+      rating /= this.props.business.reviews.length;
+      rating = rating.toFixed(1);
+    }
+    if (rating > 4.9) {
+      this.avgStar = this.fiveStar;
+    } else if (rating > 4.4) {
+      this.avgStar = this.fourHalfStar;
+    } else if (rating > 3.9) {
+      this.avgStar = this.fourStar;
+    } else if (rating > 3.4) {
+      this.avgStar = this.threeHalfStar;
+    } else if (rating > 2.9) {
+      this.avgStar = this.threeStar;
+    } else if (rating > 2.4) {
+      this.avgStar = this.twoHalfStar;
+    } else if (rating > 1.9) {
+      this.avgStar = this.twoStar;
+    } else if (rating > 1.4) {
+      this.avgStar = this.oneHalfStar;
+    } else {
+      this.avgStar = this.oneStar;
+    }
+    let price = "$";
+    if (this.props.business.price === 2) {
+      price = "$$";
+    } else if (this.props.business.price === 3) {
+      price = "$$$";
+    }
+    let categoriesArr = this.props.business.categories.split(" ");
     return (
       <div>
-        <div className="r-pic-container">
-          {this.state.business.photos.map((photo, idx) => {
-            return (
-              <div key={idx} className="r-pic">
-                <img className="r-inside" src={photo} />
-              </div>
-            );
-          })}
-          {/* <div className="r-pic">
-                    <img className="r-inside" src={this.state.business.photos[0]}/>
-                </div>
-                <div className="r-pic">
-                    <img className="r-inside" src={this.state.business.photoURL}/>
-                </div>
-                <div className="r-pic">
-                    <img className="r-inside" src={this.state.business.photoURL}/>
-                </div>
-                <div className="r-pic">
-                    <img className="r-inside" src={this.state.business.photoURL}/>
-                </div> */}
-        </div>
-
-        <div className="r-mid">
-          <div className="r-main">
-            <div className="r-vertical">
-              <div className="r-info-container">
-                <div className="r-info">
-                  <div className="r-name">{this.state.business.name}</div>
-                  <div className="r-dropdown">
-                    <div className="r-claim">{claimed}</div>
-                    <div className="claimClassTriangle">
-                      <div className="claimClass">
-                        This business has been claimed by the owner or a
-                        representative.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="r-info">
-                  <div className="r-stars">{stars}</div>
-                  <div className="r-review-count">
-                    {this.state.business.review_count} Reviews
-                  </div>
-                </div>
-                <div className="r-info">
-                  <div className="r-cost">{this.state.business.cost} </div>
-                  <div className="r-tags">
-                    {this.state.business.tags
-                      .slice(length - 1, length)
-                      .map((tag, idx) => {
-                        return (
-                          <div className={invisible} key={idx}>
-                            {tag.tag},&nbsp;{" "}
-                          </div>
-                        );
-                      })}
-                    {this.state.business.tags.slice(length).map((tag, idx) => {
-                      return <div key={idx}>{tag.tag} </div>;
-                    })}
-                  </div>
-                </div>
-                <div className="r-info">
-                  <Link
-                    className="r-top-review"
-                    to={`/business/${this.state.business.id}/reviews/create`}
-                  >
-                    <i className="fas fa-star"></i> Write a Review
-                  </Link>
-                </div>
-              </div>
-              <div className="r-breakline"></div>
-              <div className="r-section-label">Location {"&"} Hours</div>
-              <div className="rlh">
-                <div>
-                  <Map
-                    coords={this.state.business.coordinates}
-                    type="business"
-                  ></Map>
-                  <div className="r-location-wrapper">
-                    <div className="r-location">
-                      {this.state.business.address}
-                    </div>
-                    <a
-                      target="blank"
-                      href={
-                        "https://www.google.com/maps/search/" +
-                        this.state.business.name +
-                        " " +
-                        this.state.business.address
-                      }
-                      className="r-sticky-label"
-                    >
-                      Get directions
-                    </a>
-                  </div>
-                </div>
-                <div className="r-hours">
-                  <div className="r-bold"> Mon </div>
-                  <div className="r-bold"> Tue </div>
-                  <div className="r-bold"> Wed </div>
-                  <div className="r-bold"> Thu </div>
-                  <div className="r-bold"> Fri </div>
-                  <div className="r-bold"> Sat </div>
-                  <div className="r-bold"> Sun </div>
-                </div>
-                <div className="r-hours">
-                  <div> 7:00 pm - 10:00 pm </div>
-                  <div> 7:00 pm - 10:00 pm </div>
-                  <div> 7:00 pm - 10:00 pm</div>
-                  <div> 7:00 pm - 10:00 pm</div>
-                  <div> 7:00 pm - 11:00 pm</div>
-                  <div> 9:00 pm - 11:00 pm </div>
-                  <div> Closed </div>
-                </div>
-              </div>
-
-              <div className="r-breakline"></div>
-              <div className="r-section-label">About</div>
-              <div className="r-about">{this.state.business.about}</div>
-              <div className="r-breakline"></div>
-              <div className="r-section-label">Reviews</div>
-              <div className="r-reviews"> </div>
-              <div className="r-breakline"></div>
-              {/* <ReviewIndex wildcard={this.props.match.params.businessId}></ReviewIndex> */}
-              <ReviewIndex wildcard={this.state.business.id}></ReviewIndex>
-            </div>
-            <div className="r-sticky-info">
-              <div className="r-website">
-                <i className="fas fa-external-link-alt fa-lg"></i>
-                <a
-                  target="blank"
-                  href={this.state.business.website}
-                  className="r-sticky-label"
-                >
-                  {this.state.business.website}
-                </a>
-              </div>
-              <div className="r-phone">
-                <i className="fas fa-phone-alt fa-lg"></i>
-                <a className="r-sticky-label-phone">
-                  {this.state.business.phone}
-                </a>
-              </div>
-              <div className="r-directions">
-                <i className="fas fa-directions fa-lg"></i>
-                <a
-                  target="blank"
-                  href={
-                    "https://www.google.com/maps/search/" +
-                    this.state.business.name +
-                    " " +
-                    this.state.business.address
-                  }
-                  className="r-sticky-label"
-                >
-                  Get Directions
-                </a>
-              </div>
-            </div>
+        <div className="business-top">
+          {/* <div className="business-page-top-container"> */}
+          <div className="index-logo-container">
+            <Link to="/">
+              <img
+                className="top-logo-sign"
+                src="https://i.ibb.co/G37QPsf/yelp-clone-logo-removebg-preview.png"
+              />
+            </Link>
+ 
+          </div>
+          <div className="top-header-container">
           </div>
         </div>
-        {/* <img src={this.state.business.photoURL}/> */}
 
-        {/* <div><WriteReview></WriteReview></div> */}
+        <div className="business-abstract-container">
+          <div className="business-pic-container">
+            {this.props.business.photoUrls.map((photoUrl, idx) => (
+              <img
+                className="business-pic"
+                key={idx}
+                src={photoUrl}
+                alt="business-picture"
+              />
+            ))}
+          </div>
+
+          <div className="business-abstract">
+            <div className="business-abstract-text">
+              <p class="review-form-business-name">
+                {this.props.business.name}
+              </p>
+              <div className="rating-star-box">
+                <p>{this.avgStar}</p>
+                <p>
+                  <span id="num-reviews">
+                    {this.props.business.reviews.length} reviews
+                  </span>
+                </p>
+              </div>
+            </div>
+            <p className="today-hours">
+              {this.props.business.claimed ? (
+                <span className="claimed-business">
+                  <i class="fas fa-check-circle claimed-business-icon"></i>{" "}
+                  Claimed
+                </span>
+              ) : (
+                <span className="unclaimed-business">
+                  <i class="fas fa-times-circle claimed-business-icon"></i>{" "}
+                  Unclaimed
+                </span>
+              )}
+              <span className="result-bullet">&#8226;</span>
+              <span>{price}</span>
+
+              {categoriesArr.map((c, idx) => (
+                <span className="result-bullet" key={idx}>
+                  &#8226; {c}
+                </span>
+              ))}
+            </p>
+          </div>
+        </div>
+
+        <div className="business-review-link">
+          <button
+            className="business-review-button"
+            onClick={() =>
+              this.props.history.push(
+                `/businesses/${this.props.business.id}/reviews/create`
+              )
+            }
+          >
+            Write a Review
+          </button>
+        </div>
+
+        <div className="business-info-container">
+          <div className="business-container-left">
+            <div className="business-location-hour-container">
+              <div>
+                <p className="location-hours-text">Location and Hours</p>
+                <div className="business-location-hour-box">
+                  <div className="business-location">
+                    <p className="business-street">
+                      {this.props.business.address}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="review-index-container">
+              <h4 className="reviews-tag">Reviews</h4>
+            </div>
+          </div>
+
+          <div className="business-container-right">
+            <ul>
+              <li class="business-container-right-list">
+                <a
+                  className="business-website-url"
+                  href={`${this.props.business.website}`}
+                >{`${this.props.business.name}.com`}</a>
+                <img
+                  className="business-website-tag"
+                  src="https://i.ibb.co/tXSmdsh/website-icon.png"
+                  alt="website-icon"
+                />
+              </li>
+              <li class="business-container-right-list">
+                <p className="business-phone">{this.props.business.phone}</p>
+                <img
+                  src="https://i.ibb.co/b1s5S9C/phone-icon.png"
+                  alt="website-icon"
+                />
+              </li>
+              <li class="business-container-right-list">
+                <div className="side-info-dir">
+                  <p className="business-address-tag"> Get Directions </p>
+                  <p className="business-address-words">{`${this.props.business.address}`}</p>
+                </div>
+                <img
+                  src="https://i.ibb.co/6DZ56N1/address-icon.png"
+                  alt="website-icon"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <footer>
+          <div className="splash-about">
+          </div>
+        </footer>
       </div>
     );
   }

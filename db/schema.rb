@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_26_224705) do
+ActiveRecord::Schema.define(version: 2021_12_17_141405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,18 +39,28 @@ ActiveRecord::Schema.define(version: 2021_07_26_224705) do
     t.string "state"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.string "review_id"
-    t.integer "review_rating"
-    t.text "review_text"
-    t.datetime "review_time_created"
-    t.string "review_url"
-    t.string "user_id"
-    t.string "user_profile_url"
-    t.string "user_image_url"
-    t.string "user_name"
+  create_table "categories", force: :cascade do |t|
+    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "category_joins", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "business_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "body", null: false
+    t.integer "user_id", null: false
+    t.integer "business_id", null: false
+    t.integer "score", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_reviews_on_business_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,28 +1,14 @@
-# == Schema Information
-#
-# Table name: reviews
-#
-#  id                  :bigint           not null, primary key
-#  review_id           :string
-#  review_rating       :integer
-#  review_text         :text
-#  review_time_created :datetime
-#  review_url          :string
-#  user_id             :string
-#  user_profile_url    :string
-#  user_image_url      :string
-#  user_name           :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#
 class Review < ApplicationRecord
-  validates :business_id, :user_id, :body, :score, presence: true
+  validates :body, :user_id, :business_id, presence: true
+  validates :score, presence: true, inclusion: { in: [1, 2, 3, 4, 5] }
 
   belongs_to :user,
+             primary_key: :id,
              foreign_key: :user_id,
              class_name: :User
 
-  belongs_to :restaurant,
+  belongs_to :business,
+             primary_key: :id,
              foreign_key: :business_id,
              class_name: :Business
 end

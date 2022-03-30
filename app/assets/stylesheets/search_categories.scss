@@ -1,0 +1,37 @@
+.search-categories {
+  padding-bottom: 168px;
+  text-align: center;
+  font-family: helvetica;
+  margin-top: 15px;
+}
+
+.search-categories ul {
+}
+
+.search-categories li {
+  padding: 0 12px 0 12px;
+  display: inline-block;
+  line-height: 18px;
+}
+
+.search-categories a:hover,
+.homeservices-dropdown:hover {
+  border-bottom: 1px solid white;
+}
+
+.splash-search-nav-homeservices:hover .homeservices-dropdown-container {
+  display: block;
+}
+
+.search-categories a {
+  margin-left: 4px;
+  margin-right: 4px;
+  font-weight: 700;
+}
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -0.1em;
+  fill: #666;
+}

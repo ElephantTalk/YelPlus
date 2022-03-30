@@ -20,13 +20,13 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
   attr_reader :password
 
-  has_many :restaurants,
+  has_many :businesses,
            foreign_key: :owner_id,
-           class_name: :Restaurant
+           class_name: :Business
 
   has_many :reviews,
            through: :review_joins,
-           source: :Restaurant
+           source: :business
 
   has_many :review_joins,
            foreign_key: :user_id,
