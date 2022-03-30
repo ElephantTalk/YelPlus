@@ -10,15 +10,27 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  profile_url     :string
+#  image_url       :string
 #
 class User < ApplicationRecord
   validates :email, :session_token, presence: true, uniqueness: true
   validates :first_name, :last_name, :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
-
   after_initialize :ensure_session_token
-
   attr_reader :password
+
+  has_many :businesses,
+           foreign_key: :owner_id,
+           class_name: :Business
+
+  has_many :reviews,
+           through: :review_joins,
+           source: :business
+
+  has_many :review_joins,
+           foreign_key: :user_id,
+           class_name: :Review
 
   def password=(password)
     @password = password

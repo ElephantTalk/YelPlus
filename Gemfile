@@ -51,6 +51,8 @@ group :development do
   gem 'binding_of_caller'
   gem 'annotate'
   gem 'pry-rails'
+  gem 'faraday'
+  gem 'figaro'
 end
 
 group :test do

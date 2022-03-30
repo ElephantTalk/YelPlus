@@ -1,31 +1,34 @@
 import React from "react";
+import SessionContainer from "../session/session_container";
 import { Link } from "react-router-dom";
+import SearchNav from "../search/search_nav";
 
-class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { currentUser, logout } = this.props;
-    const sessionNav = currentUser ? (
-      <div className="session-nav">
-        <button className="logout-btn" onClick={logout}>
-          Logout
-        </button>
+const Nav = () => (
+  <div className="nav-main">
+    <header className="nav-header">
+      <div className="nav-header-main">
+        <div className="nav-logo">
+          <div
+            className="nav-logo-img"
+            style={{
+              backgroundImage: `url("https://myawsbucket-test001.s3.us-west-2.amazonaws.com/navlogo.svg")`,
+            }}
+            // style={{ backgroundImage: `url(${NavLogo})` }}
+          >
+            <a href="/" className="nav-logo-link" role="link">
+              Yelp
+            </a>
+          </div>
+        </div>
+        <div className="nav-search">
+          <SearchNav></SearchNav>
+        </div>
+        <div className="nav-session">
+          <SessionContainer className="header-auth" />
+        </div>
       </div>
-    ) : (
-      <div className="session-nav">
-        <Link id="login-btn" to="/login">
-          Log In
-        </Link>
-        <Link id="signup-btn" to="/signup">
-          Sign Up
-        </Link>
-      </div>
-    );
-    return <div className="nav">{sessionNav}</div>;
-  }
-}
+    </header>
+  </div>
+);
 
 export default Nav;
