@@ -12,10 +12,10 @@ export const fetchBusiness = (id) =>
   });
 
 // export const fetchBusinesses = (searchValues) => {
-//   const corsApiUrl = "https://cors-anywhere.herokuapp.com/";
+//   const corsApiUrl = "https://cor-test11.herokuapp.com/";
 //   $.ajax({
 //     method: "GET",
-//     url: `https://api.yelp.com/v3/businesses/search?term=${searchValues.term}&location=${searchValues.location}`,
+//     url: `${corsApiUrl}https://api.yelp.com/v3/businesses/search?term=${searchValues.term}&location=${searchValues.location}`,
 //   });
 // };
 
@@ -37,19 +37,19 @@ export const fetchBusiness = (id) =>
 //   }
 // };
 
-export const fetchBusinesses = async (searchValues) => {
-  client
-    .search({
-      term: searchValues.term,
-      location: searchValues.location,
-    })
-    .then((response) => {
-      console.log(response.jsonBody.name);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-};
+// export const fetchBusinesses = async (searchValues) => {
+//   client
+//     .search({
+//       term: searchValues.term,
+//       location: searchValues.location,
+//     })
+//     .then((response) => {
+//       console.log(response.jsonBody.name);
+//     })
+//     .catch((e) => {
+//       console.log(e);
+//     });
+// };
 
 // export const fetchBusinesses = (searchValues) => {
 //   const corsApiUrl = "https://cors-anywhere.herokuapp.com/";
@@ -89,3 +89,20 @@ export const fetchBusinesses = async (searchValues) => {
 //     });
 //   };
 // };
+
+export const fetchBusinesses = (searchValues) => {
+  // debugger
+  return (dispatch) => {
+    axios
+      .get("http://localhost:3000/#/search", {
+        term: searchValues.term,
+        location: searchValues.location,
+      })
+      .then((res) => {
+        dispatch({
+          type: "RECEIVE_BUSINESSES",
+          businesses: res.data.businesses,
+        });
+      });
+  };
+};

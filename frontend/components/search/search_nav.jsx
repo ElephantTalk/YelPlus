@@ -12,7 +12,9 @@ class SearchNav extends React.Component {
       // locationError: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleInput = this.handleChange.bind(this);
+    // this.handleInput = this.handleChange.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.searchValues = { term: "", location: "" };
   }
 
@@ -31,13 +33,16 @@ class SearchNav extends React.Component {
   // }
   handleSubmit = (e) => {
     e.preventDefault();
+  
     const { term, location } = this.state;
-    // console.log(this.state);
+    debugger
+    console.log(this.state);
 
-    this.props.history.push({
-      pathname: `/search?term=${term}&location=${location}`,
+    this.props.history.push(`/search?term=${term}&location=${location}`, {
+      term: term,
+      location: location,
     });
-    this.props.fetchBusinesses(this.state);
+    // this.props.fetchBusinesses(this.state);
 
     window.scrollTo(0, 0);
   };
