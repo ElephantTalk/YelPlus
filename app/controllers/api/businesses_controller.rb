@@ -24,7 +24,7 @@ class Api::BusinessesController < ApplicationController
       req.headers["Authorization"] = "Bearer xiVvg73izUMSGp4GPwq5thwEmeqsJ0x07clzLPVXKqmEx0htroF0BkNzHWI2JLhbOASZNRWKeQDhQalDgnkL_rB2b6uKrY07LWcx_VHjHoTUHLOHnaKqclIpa0ceYnYx"
       req.params["term"] = params[:term]
       req.params["location"] = params[:location]
-      console.log(params)
+      console.log(:term)
     end
     body = JSON.parse(resp.body)
     index = body["businesses"]

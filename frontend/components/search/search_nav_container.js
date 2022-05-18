@@ -4,15 +4,18 @@ import { Link, withRouter } from "react-router-dom";
 import SearchNav from "./search_nav";
 import { fetchBusinesses } from "../../util/business_api_util";
 
-const mSTP = (state, ownProps) => ({
-    formType: "search",
-    user: state.entities.users[state.session.id],
-    businesses: state.entities.businesses,
-  });
+const mSTP = (state) => ({
+  formType: "search",
+  user: state.entities.users[state.session.id],
+  businesses: state.entities.businesses,
+  term: state.term,
 
-const mDTP = dispatch => {
-    return {
-        fetchBusinesses: (searchValues) => dispatch(fetchBusinesses(searchValues))
-    };
+  location: state.location,
+});
+
+const mDTP = (dispatch) => {
+  return {
+    fetchBusinesses: (searchValues) => dispatch(fetchBusinesses(searchValues)),
+  };
 };
 export default withRouter(connect(mSTP, mDTP)(SearchNav));
