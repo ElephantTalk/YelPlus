@@ -36,18 +36,22 @@ export const fetchBusiness = (id) => (dispatch) =>
 //   };
 // };
 
-// export const fetchBusinesses = (searchValues) => (dispatch) =>
-//   ApiBizUtil.fetchBusinesses(searchValues).then((businesses) =>
-//     dispatch(receiveBusinesses(businesses), console.log(searchValues))
-//   );
+export const fetchBusinesses = (searchValues) => (dispatch) =>
+  ApiBizUtil.fetchBusinesses(searchValues).then((businesses) =>
+    dispatch(receiveBusinesses(businesses))
+  );
 
-export const fetchBusinesses = (searchValues) => {
-  return (dispatch) => {
-    return ApiBizUtil.fetchBusinesses(searchValues).then((businesses) => {
-      return dispatch(receiveBusinesses(businesses));
-    });
-  };
-};
+// export const fetchBusinesses = () => (dispatch) =>
+//   ApiBizUtil.fetchBusinesses().then((businesses) =>
+//     dispatch(receiveBusinesses(businesses))
+//   );
+// export const fetchBusinesses = (searchValues) => {
+//   return (dispatch) => {
+//     return ApiBizUtil.fetchBusinesses(searchValues).then((businesses) => {
+//       return dispatch(receiveBusinesses(businesses));
+//     });
+//   };
+// };
 
 // export const fetchBusinesses = (searchValues) => async (dispatch) => {
 //   console.log(searchValues);

@@ -49,9 +49,10 @@ class SearchNav extends React.Component {
       pathname: `/search?term=${this.state.term}&location=${this.state.location}`,
     });
     this.props.fetchBusinesses(this.state);
-
+    // this.props.parentCallback(e.target.term.value);
     window.scrollTo(0, 0);
   }
+  
 
   // handleSubmit = (e) => {
   //   e.preventDefault();

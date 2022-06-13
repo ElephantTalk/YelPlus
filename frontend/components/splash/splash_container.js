@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Splash from "./splash";
+import { fetchBusinesses } from "../../util/business_api_util";
 import {
   logoutCurrentUser,
   receiveCurrentUser,
@@ -15,6 +16,7 @@ const mSTP = (state, ownProps) => ({
 const mDTP = (dispatch) => ({
   logoutCurrentUser: () => dispatch(logoutCurrentUser()),
   receiveCurrentUser: (user) => dispatch(receiveCurrentUser(user)),
+  fetchBusinesses: (searchValues) => dispatch(fetchBusinesses(searchValues)),
 });
 
 export default connect(mSTP, mDTP)(Splash);

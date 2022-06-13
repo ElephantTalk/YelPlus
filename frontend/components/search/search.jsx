@@ -23,13 +23,10 @@ class Search extends React.Component {
     const { term, location } = this.state;
     {
       this.props.history.push(
-        `/search?term=${term}&location=${location}`,
-        {
-          term: term,
-          location: location,
-        }
+        `/search?term=${this.state.term}&location=${this.state.location}`
       );
     }
+    this.props.fetchBusinesses(this.state);
   };
 
   render() {
@@ -45,7 +42,7 @@ class Search extends React.Component {
               <label className="search-find-label">
                 <span className="field-name">Find</span>
                 <input
-                  onChange={this.handleInput('term')}
+                  onChange={this.handleInput("term")}
                   className="search-bar-input"
                   type="text"
                   name="query"
@@ -63,7 +60,7 @@ class Search extends React.Component {
                   className={`search-text-${this.props.formType}`}
                   type="text"
                   placeholder="San Diego, CA"
-                  onChange={this.handleInput('location')}
+                  onChange={this.handleInput("location")}
                 />
               </label>
             </div>

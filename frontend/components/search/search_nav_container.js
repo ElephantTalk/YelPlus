@@ -3,6 +3,8 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import SearchNav from "./search_nav";
 import { fetchBusinesses } from "../../util/business_api_util";
+// import { fetchBusinesses } from "../../actions/business_actions";
+
 
 const mSTP = (state) => ({
   formType: "search",
