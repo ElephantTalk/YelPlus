@@ -34,7 +34,7 @@ class SplashPage extends React.Component {
               </h1>
               <Search
                 formType={this.props.formType}
-                searchBusinesses={this.props.searchBusinesses}
+                fetchBusinesses={this.props.fetchBusinesses}
               />
               <ul className="search-categories">
                 <li className="search-featured">

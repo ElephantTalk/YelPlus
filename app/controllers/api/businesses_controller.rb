@@ -7,26 +7,28 @@ class Api::BusinessesController < ApplicationController
     @business = Business.with_attached_photos.find_by(id: params[:id])
   end
 
-  def index
-    if params[:term]
-      @businesses = Business.all.select { |ele|
-        ele.name.downcase.include?(params[:term].downcase) ||
-          ele.categories.downcase.include?(params[:term].downcase)
-      }
-    else
-      @businesses = Business.all
-    end
-    render :index
-  end
+  # def index
+  #   if params[:term]
+  #     @businesses = Business.all.select { |ele|
+  #       ele.name.downcase.include?(params[:term].downcase) ||
+  #         ele.categories.downcase.include?(params[:term].downcase)
+  #     }
+  #   else
+  #     @businesses = Business.all
+  #   end
+  #   render :index
+  # end
 
-  def search
-    businesses = Faraday.get("https://api.yelp.com/v3/businesses/search") do |req|
-      req.headers["Authorization"] = "Bearer #{ENV["YELP_API_KEY"]}"
+  def index
+    resp = Faraday.get("https://api.yelp.com/v3/businesses/search") do |req|
+      req.headers["Authorization"] = "Bearer xiVvg73izUMSGp4GPwq5thwEmeqsJ0x07clzLPVXKqmEx0htroF0BkNzHWI2JLhbOASZNRWKeQDhQalDgnkL_rB2b6uKrY07LWcx_VHjHoTUHLOHnaKqclIpa0ceYnYx"
       req.params["term"] = params[:term]
       req.params["location"] = params[:location]
+      console.log(:term)
     end
-    search_results = JSON.parse(businesses.body)
-    render json: search_results
+    body = JSON.parse(resp.body)
+    index = body["businesses"]
+    render json: index
   end
 
   private

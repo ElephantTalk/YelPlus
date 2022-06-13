@@ -17,3 +17,28 @@ const businessesReducer = (state = {}, action) => {
 };
 
 export default businessesReducer;
+
+// const initialState = {
+//   businesses: [],
+//   loading: false,
+// };
+
+// const businessesReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case "LOADING_BUSINESSES":
+//       return {
+//         ...state,
+//         loading: true,
+//       };
+//     case "FETCH_BUSINESSES":
+//       return {
+//         ...state,
+//         businesses: action.businesses,
+//         loading: false,
+//       };
+//     default:
+//       return state;
+//   }
+// };
+
+// export default businessesReducer;

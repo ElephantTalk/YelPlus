@@ -1,26 +1,31 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchBusinesses } from "../../util/business_api_util";
 class SearchNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       term: "",
       location: "",
-      // isFetched: false,
-      // locationError: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleInput = this.handleChange.bind(this);
+    // this.handleInput = this.handleChange.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+    //   this.handleChange = this.handleChange.bind(this);
     this.searchValues = { term: "", location: "" };
   }
-
-  handleChange(type) {
-    return (e) => {
-      this.setState({ [type]: e.currentTarget.value });
-    };
+  handleSearchChange(e) {
+    e.preventDefault();
+    this.setState({
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
   }
+
+  // handleChange(type) {
+  //   return (e) => {
+  //     this.setState({ [type]: e.currentTarget.value });
+  //   };
+  // }
 
   // handleSubmit(e) {
   //   e.preventDefault();
@@ -29,23 +34,25 @@ class SearchNav extends React.Component {
   //   console.log(this.state)
   //   this.props.history.push(`/search?term=${term}&location=${location}`);
   // }
-  handleSubmit = (e) => {
+  handleSubmit(e) {
     e.preventDefault();
     const { term, location } = this.state;
+    // debugger
     // console.log(this.state);
 
+    // this.props.history.push(`/search?term=${term}&location=${location}`, {
+    //   term: term,
+    //   location: location,
+    // });
+
     this.props.history.push({
-      pathname: `/search?term=${term}&location=${location}`,
+      pathname: `/search?term=${this.state.term}&location=${this.state.location}`,
     });
     this.props.fetchBusinesses(this.state);
-
+    // this.props.parentCallback(e.target.term.value);
     window.scrollTo(0, 0);
-  };
-  handleSearchChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
+  }
+  
 
   // handleSubmit = (e) => {
   //   e.preventDefault();
@@ -92,10 +99,11 @@ class SearchNav extends React.Component {
                 <span className="field-name"></span>
                 <input
                   className={`searchNav-text-search`}
-                  type="text"
+                  id="term"
+                  name="term"
                   placeholder="nail salons, plumbers, takeout..."
                   value={this.state.term}
-                  onChange={this.handleChange("term")}
+                  onChange={this.handleSearchChange}
                 />
               </label>
             </div>
@@ -103,12 +111,20 @@ class SearchNav extends React.Component {
             <div className="searchNav-near-bar">
               <label className="searchNav-near-label">
                 <span className="field-name"></span>
-                <input
+                {/* <input
                   className={`searchNav-text-search`}
                   type="text"
                   placeholder="San Diego, CA"
                   value={this.state.location}
-                  onChange={this.handleChange("location")}
+                  onChange={this.handleSearchChange("location")}
+                /> */}
+                <input
+                  className={`searchNav-text-search`}
+                  id="location"
+                  value={this.state.location}
+                  placeholder="San Diego, CA"
+                  name="location"
+                  onChange={this.handleSearchChange}
                 />
               </label>
             </div>
